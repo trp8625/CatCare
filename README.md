@@ -1,5 +1,4 @@
 # CatCare
-
 **AI-powered personalized cat nutrition assistant**
 
 View here: https://catcare.up.railway.app/
