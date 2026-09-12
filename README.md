@@ -210,7 +210,7 @@ Fetches profile from PostgreSQL, retrieves relevant chunks from ChromaDB filtere
 
 **Phase 3 (complete):** Commercial food product matching. 829 wet cat food products scored and ranked by life stage nutritional targets, with per-day feeding calculations based on the cat's calculated DER.
 
-**Phase 4 (deferred):** Disease-specific nutrition. Requires comorbidity handling and conflict resolution logic. See architectural note below.
+**Phase 4 (deferred):** Disease-specific nutrition. Requires comorbidity handling and conflict resolution logic. 
 
 ---
 
