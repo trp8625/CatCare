@@ -220,19 +220,9 @@ Fetches profile from PostgreSQL, retrieves relevant chunks from ChromaDB filtere
 
 Commercial cat food data is structured and deterministic — a product either has 45% protein or it doesn't. Putting it in the vector database would mean retrieving it by semantic similarity, which is the wrong tool for a lookup problem. The product matcher uses direct CSV filtering and numerical scoring, which is faster, more predictable, and easier to explain.
 
-### Why Phase 4 is deferred
-
-The Phase 3 product scorer ranks products based on life stage nutritional targets for healthy cats. Introducing health conditions (Phase 4) requires a fundamentally different scoring model for two reasons:
-
-**Hard constraints vs soft scoring.** A cat with chronic kidney disease (CKD) requires phosphorus restriction — typically under 100–120 mg/100kcal. This is not a scoring preference; it is a hard ceiling that overrides all other criteria. The current scorer has no concept of hard constraints.
-
-**Comorbidity conflict resolution.** Many senior cats have multiple conditions simultaneously. A cat with both CKD and obesity needs low phosphorus AND calorie restriction. A cat with CKD and sarcopenia needs low phosphorus but HIGH protein — goals that conflict directly, since high-protein foods tend to be high in phosphorus. Resolving these conflicts requires a constraint satisfaction approach, not a simple scoring function.
-
-For example, the top-ranked products for a healthy senior cat have phosphorus values of 226–341 mg/100kcal. For a cat with CKD, those same products would be contraindicated and the ranking would look completely different. Phase 4 addresses this by introducing condition-specific hard constraints and conflict resolution logic.
-
 ### Why life stage is derived at query time, not stored
 
-Storing life stage as a fixed field in the cat profile would cause it to go stale — a cat crosses from young adult to mature adult at age 7, and nothing would update the stored value automatically. Deriving it at query time from date_of_birth ensures it is always accurate with no maintenance burden.
+Storing life stage as a fixed field in the cat profile would cause it to go stale —-> a cat crosses from young adult to mature adult at age 7, and nothing would update the stored value automatically. Deriving it at query time from date_of_birth ensures it is always accurate with no maintenance burden.
 
 ---
 
